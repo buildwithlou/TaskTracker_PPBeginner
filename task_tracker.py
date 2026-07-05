@@ -53,3 +53,5 @@ def add_task(description: str):
     }
 
     tasks.append(new_task)
+    save_tasks(tasks)
+    print(f"Task added succesfully (ID: {next_id})")
