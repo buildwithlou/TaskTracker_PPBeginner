@@ -1,3 +1,4 @@
+import datetime
 import json
 from pathlib import Path
 
@@ -29,3 +30,26 @@ def save_tasks(tasks: list):
     """Serializes and writes the complete task list state back onto disk."""
     with open(STORAGE_FILE, "w", encoding="utf-8") as file:
         json.dump(tasks, file, indent=4)
+
+
+def add_task(description: str):
+    """Creates a new task and appends it to the storage pipeline."""
+    if not description.strip():
+        print("Error: Task description cannot be empty.")
+        return
+
+    tasks = load_tasks()
+
+    next_id = max([task["id"] for task in tasks], default=0) + 1
+
+    current_time = datetime.now().isoformat()
+
+    new_task = {
+        "id": next_id,
+        "description": description,
+        "status": "todo",
+        "createdAt": current_time,
+        "updatedAt": current_time,
+    }
+
+    tasks.append(new_task)
