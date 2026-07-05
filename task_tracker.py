@@ -1,6 +1,6 @@
-import datetime
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 # Define the absolute target layout for our database storage file
