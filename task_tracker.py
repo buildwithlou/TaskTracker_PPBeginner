@@ -63,3 +63,21 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: python task_tracker.py [command] [arguments]")
         print("Commands: add, upadte, delete, mark-in-progress, mark-done, list")
+        return
+
+    command = sys.argv[1].lower()
+
+    if command == "add":
+        if len(sys.argv) < 3:
+            print(
+                'Error: Missing description. Usage: python task_tracker.py add "description"'
+            )
+            return
+        add_task(sys.argv[2])
+
+    else:
+        print(f"Unknown command: '{command}'")
+
+
+if __name__ == "__main__":
+    main()
