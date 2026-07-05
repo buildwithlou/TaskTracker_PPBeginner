@@ -41,6 +41,7 @@ def add_task(description: str):
 
     tasks = load_tasks()
 
+    # Auto-increment dynamic ID strategy
     next_id = max([task["id"] for task in tasks], default=0) + 1
 
     current_time = datetime.now().isoformat()
