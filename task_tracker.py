@@ -1,5 +1,6 @@
 import datetime
 import json
+import sys
 from pathlib import Path
 
 # Define the absolute target layout for our database storage file
@@ -55,3 +56,10 @@ def add_task(description: str):
     tasks.append(new_task)
     save_tasks(tasks)
     print(f"Task added succesfully (ID: {next_id})")
+
+
+def main():
+    # sys.arg[0] is the script name. We check for arguments following it.
+    if len(sys.argv) < 2:
+        print("Usage: python task_tracker.py [command] [arguments]")
+        print("Commands: add, upadte, delete, mark-in-progress, mark-done, list")
