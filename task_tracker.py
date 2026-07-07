@@ -94,7 +94,6 @@ def delet_task(task_id: int):
 
 
 def main():
-    # sys.arg[0] is the script name. We check for arguments following it.
     if len(sys.argv) < 2:
         print("Usage: python task_tracker.py [command] [arguments]")
         print("Commands: add, upadte, delete, mark-in-progress, mark-done, list")
@@ -110,6 +109,27 @@ def main():
             return
         add_task(sys.argv[2])
 
+    elif command == "update":
+        if len(sys.argv) < 4:
+            print(
+                'Error: Missing arguments. Usage: python task_tracker.py update [id] "new description"'
+            )
+            return
+        try:
+            task_id = int(sys.argv[2])
+            update_task(task_id, sys.argv[3])
+        except ValueError:
+            print("Error: Task ID must be an integer.")
+
+    elif command == "delete":
+        if len(sys.argv) < 3:
+            print("Error: Missing task ID. Usage: python task_tracker.py delete [id]")
+            return
+        try:
+            task_id = int(sys.argv[2])
+            delete_task(task_id)
+        except ValueError:
+            print("Error: Task ID must be an integer.")
     else:
         print(f"Unknown command: '{command}'")
 
