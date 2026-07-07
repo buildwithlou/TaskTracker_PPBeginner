@@ -93,6 +93,20 @@ def delete_task(task_id: int):
     print(f"Task {task_id} deleted successfully.")
 
 
+def update_task_status(task_id: int, new_status: str):
+    """Finds a task by ID and transitions its status state."""
+    tasks = load_tasks()
+
+    for task in tasks:
+        if task["id"] == task_id:
+            task["status"] = new_status
+            task["updatedAt"] = datetime.now().isoformat()
+            save_tasks(tasks)
+            print(f"Task {task_id} marked as {new_status} successfully.")
+            return
+    print(f"Error: Task with ID {task_id} not found.")
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python task_tracker.py [command] [arguments]")
