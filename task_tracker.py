@@ -78,6 +78,21 @@ def update_task(task_id: int, new_description: str):
     print(f"Error: Task with ID {task_id} not found.")
 
 
+def delet_task(task_id: int):
+    """Removes a task from the dataset entirely based on its ID."""
+    tasks = load_tasks()
+
+    # Filter out the task with the matching ID
+    updated_tasks = [task for task in tasks if task["id"] != task_id]
+
+    if len(updated_tasks) == len(tasks):
+        print(f"Error: Task with ID {task_id} not found.")
+        return
+
+    save_tasks(updated_tasks)
+    print(f"Task {task_id} deleted successfully.")
+
+
 def main():
     # sys.arg[0] is the script name. We check for arguments following it.
     if len(sys.argv) < 2:
