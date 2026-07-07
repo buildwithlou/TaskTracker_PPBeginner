@@ -78,7 +78,7 @@ def update_task(task_id: int, new_description: str):
     print(f"Error: Task with ID {task_id} not found.")
 
 
-def delet_task(task_id: int):
+def delete_task(task_id: int):
     """Removes a task from the dataset entirely based on its ID."""
     tasks = load_tasks()
 
