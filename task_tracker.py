@@ -59,6 +59,25 @@ def add_task(description: str):
     print(f"Task added succesfully (ID: {next_id})")
 
 
+def update_task(task_id: int, new_description: str):
+    """Finds a task by ID and updates its description and modification timestamp."""
+    if not new_description.strip():
+        print("Error: New description cannot be empty.")
+        return
+    tasks = load_tasks()
+
+    # Search for the targeted task
+    for task in tasks:
+        if task["id"] == task_id:
+            task["description"] = new_description
+            task["updatedAt"] = datetime.now().isoformat()
+            save_tasks(tasks)
+            print(f"Task {task_id} updated successfully.")
+            return
+
+    print(f"Error: Task with ID {task_id} not found.")
+
+
 def main():
     # sys.arg[0] is the script name. We check for arguments following it.
     if len(sys.argv) < 2:

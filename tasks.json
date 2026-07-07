@@ -5,5 +5,12 @@
         "status": "todo",
         "createdAt": "2026-07-05T00:02:57.927351",
         "updatedAt": "2026-07-05T00:02:57.927351"
+    },
+    {
+        "id": 2,
+        "description": "Do laundry",
+        "status": "todo",
+        "createdAt": "2026-07-06T21:06:29.784967",
+        "updatedAt": "2026-07-06T21:06:29.784967"
     }
 ]
