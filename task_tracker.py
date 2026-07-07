@@ -144,6 +144,19 @@ def main():
             delete_task(task_id)
         except ValueError:
             print("Error: Task ID must be an integer.")
+
+    elif command == "mark-in-progress":
+        if len(sys.argv) < 3:
+            print(
+                "Error: Missing task ID. Usage: python task_tracker.py mark-in-progress [id]"
+            )
+            return
+        try:
+            task_id = int(sys.argv[2])
+            update_task_status(task_id, "in-progress")
+        except ValueError:
+            print("Error: Task ID must be an integer.")
+
     else:
         print(f"Unknown command: '{command}'")
 
