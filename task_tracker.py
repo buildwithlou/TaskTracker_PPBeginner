@@ -107,7 +107,14 @@ def update_task_status(task_id: int, new_status: str):
     print(f"Error: Task with ID {task_id} not found.")
 
 
-# def list_tasks():
+def list_tasks():
+"""Displays saved tasks in the terminal.
+If a status_filter is provided, displays only matching tasks."""
+    tasks = load_tasks()
+
+    if not tasks:
+        print("No tasks found.")
+        return
 
 
 def main():
