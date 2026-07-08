@@ -39,6 +39,13 @@ class TestTaskTracker(unittest.TestCase):
         self.assertEqual(data[0]["status"], "todo")
         self.assertEqual(data[0]["id"], 1)
 
+    # def test_update_task_modifies_description(self):
+    """Cerify that a task's description can be updated dynamically."""
+    # def test_delete_task_removes_from_storage(self):
+    """Verify that a task is cleanly removed from the JSON database."""
+    # def test_update_task_status(self):
+    """Verify lifecycle progress transitions change states properly."""
+
 
 if __name__ == "__main__":
     unittest.main()
