@@ -167,7 +167,7 @@ def main():
             task_id = int(sys.argv[2])
             update_task_status(task_id, "done")
         except ValueError:
-            print("Error: Task ID must be an integer.")
+            print("Error: Task ID must be an integer..")
 
     else:
         print(f"Unknown command: '{command}'")
