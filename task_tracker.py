@@ -107,6 +107,9 @@ def update_task_status(task_id: int, new_status: str):
     print(f"Error: Task with ID {task_id} not found.")
 
 
+# def list_tasks():
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python task_tracker.py [command] [arguments]")
