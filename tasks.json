@@ -2,9 +2,9 @@
     {
         "id": 1,
         "description": "Buy groceries",
-        "status": "todo",
+        "status": "in-progress",
         "createdAt": "2026-07-05T00:02:57.927351",
-        "updatedAt": "2026-07-05T00:02:57.927351"
+        "updatedAt": "2026-07-08T17:18:26.128154"
     },
     {
         "id": 2,
@@ -12,5 +12,12 @@
         "status": "todo",
         "createdAt": "2026-07-06T21:06:29.784967",
         "updatedAt": "2026-07-06T21:06:29.784967"
+    },
+    {
+        "id": 3,
+        "description": "Congifure Github Actions CI pipeline",
+        "status": "todo",
+        "createdAt": "2026-07-08T17:17:55.144223",
+        "updatedAt": "2026-07-08T17:17:55.144223"
     }
 ]

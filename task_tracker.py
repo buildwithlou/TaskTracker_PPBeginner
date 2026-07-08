@@ -197,6 +197,17 @@ def main():
         except ValueError:
             print("Error: Task ID must be an integer..")
 
+    elif command == "list":
+        # Check if an optional sub-argument was passed
+        if len(sys.argv) >= 3:
+            status_argument = sys.argv[2].lower()
+            if status_argument in ["todo", "in-progress", "done"]:
+                list_tasks(status_argument)
+            else:
+                print("Error: Invalid status. Use: todo, in-progress, or done.")
+        else:
+            list_tasks()
+
     else:
         print(f"Unknown command: '{command}'")
 
