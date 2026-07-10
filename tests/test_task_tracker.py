@@ -60,8 +60,8 @@ class TestTaskTracker(unittest.TestCase):
         tasks = task_tracker.load_tasks()
         self.assertEqual(len(tasks), 0)
 
-    # # def test_update_task_status(self):
-    # """Verify lifecycle progress transitions change states properly."""
+    def test_update_task_status(self):
+        """Verify lifecycle progress transitions change states properly."""
 
 
 if __name__ == "__main__":
