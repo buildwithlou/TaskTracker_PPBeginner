@@ -39,8 +39,19 @@ class TestTaskTracker(unittest.TestCase):
         self.assertEqual(data[0]["status"], "todo")
         self.assertEqual(data[0]["id"], 1)
 
-    # def test_update_task_modifies_description(self):
+    def test_update_task_modifies_description(self):
     """Cerify that a task's description can be updated dynamically."""
+    task_tracker.add_task("Original description")
+
+    #Update task ID 1
+    task_tracker.update_task(1, "Updated description")
+
+    tasks = task_tracker.load_tasks()
+    self.assertEqual(tasks[0]["description"], "Updated description")
+    #Ensure the updatedAt timestamp changed or exists
+    self.asertIn("UpdatedAt", tasks[0])
+
+    
     # def test_delete_task_removes_from_storage(self):
     """Verify that a task is cleanly removed from the JSON database."""
     # def test_update_task_status(self):
