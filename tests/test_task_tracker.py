@@ -49,11 +49,11 @@ class TestTaskTracker(unittest.TestCase):
         tasks = task_tracker.load_tasks()
         self.assertEqual(tasks[0]["description"], "Updated description")
         # Ensure the updatedAt timestamp changed or exists
-        self.asertIn("UpdatedAt", tasks[0])
+        self.assertIn("updatedAt", tasks[0])
 
     def test_delete_task_removes_from_storage(self):
         """Verify that a task is cleanly removed from the JSON database."""
-        task_tracker.add_tasks("Task to delete")
+        task_tracker.add_task("Task to delete")
         self.assertEqual(len(task_tracker.load_tasks()), 1)
         # Delete task ID 1
         task_tracker.delete_task(1)
@@ -65,7 +65,7 @@ class TestTaskTracker(unittest.TestCase):
         task_tracker.add_task("Lifecycle target")
 
         # Transition state to active progress
-        task_tracker.update_task_state(1, "in-progress")
+        task_tracker.update_task_status(1, "in-progress")
         tasks = task_tracker.load_tasks()
         self.assertEqual(tasks[0]["status"], "in-progress")
 
