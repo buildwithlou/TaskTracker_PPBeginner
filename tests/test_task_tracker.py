@@ -51,8 +51,15 @@ class TestTaskTracker(unittest.TestCase):
         # Ensure the updatedAt timestamp changed or exists
         self.asertIn("UpdatedAt", tasks[0])
 
-    # def test_delete_task_removes_from_storage(self):
-    # """Verify that a task is cleanly removed from the JSON database."""
+    def test_delete_task_removes_from_storage(self):
+        """Verify that a task is cleanly removed from the JSON database."""
+        task_tracker.add_tasks("Task to delete")
+        self.assertEqual(len(task_tracker.load_tasks()), 1)
+        # Delete task ID 1
+        task_tracker.delete_task(1)
+        tasks = task_tracker.load_tasks()
+        self.assertEqual(len(tasks), 0)
+
     # # def test_update_task_status(self):
     # """Verify lifecycle progress transitions change states properly."""
 
