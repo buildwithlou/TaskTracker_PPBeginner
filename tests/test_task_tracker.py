@@ -48,7 +48,7 @@ class TestTaskTracker(unittest.TestCase):
 
         tasks = task_tracker.load_tasks()
         self.assertEqual(tasks[0]["description"], "Updated description")
-        # Ensure the updatedAt timestamp changed or exists
+        # Ensure the updatedAt timestamp changed or existence
         self.assertIn("updatedAt", tasks[0])
 
     def test_delete_task_removes_from_storage(self):
