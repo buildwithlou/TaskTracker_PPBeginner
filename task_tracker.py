@@ -204,7 +204,7 @@ def main():
             if status_argument in ["todo", "in-progress", "done"]:
                 list_tasks(status_argument)
             else:
-                print("Error: Invalid status")
+                print("Error: Invalid status. Use: todo, in-progress, or done.")
         else:
             list_tasks()
 
