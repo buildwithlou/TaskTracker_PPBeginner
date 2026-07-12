@@ -187,7 +187,9 @@ def main():
 
     elif command == "mark-donw":
         if len(sys.argv) < 3:
-            print("Error: Missing task ID")
+            print(
+                "Error: Missing task ID. Usage: python task_tracker.py mark-done [id]"
+            )
             return
         try:
             task_id = int(sys.argv[2])
