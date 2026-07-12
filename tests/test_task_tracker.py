@@ -74,6 +74,32 @@ class TestTaskTracker(unittest.TestCase):
         tasks = task_tracker.load_tasks()
         self.assertEqual(tasks[0]["status"], "done")
 
+    def test_add_empty_description_fails(self):
+        """Verify that empty description are rejected."""
+        task_tracker.add_task("")
+        tasks = task_tracker.load_tasks()
+        self.assertEqual(len(tasks), 0)
+
+    def test_delete_nonexistent_task(self):
+        """Verify deleting a non-existent task doesn't crash."""
+        task_tracker.add_task("Real task")
+        task_tracker.delete_task(999)
+        tasks = task_tracker.load_tasks()
+        self.assertEqual(len(tasks), 1)
+
+    def test_list_tasks_by_status(self):
+        """Verify status filtering works correctly."""
+        task_tracker.add_task("Task 1")
+        task_tracker.add_task("Task 2")
+        task_tracker.update_task_status(1, "done")
+
+        tasks = task_tracker.load_tasks()
+        done_tasks = [t for t in tasks if t["status"] == "done"]
+        todo_tasks = [t for t in tasks if t["status"] == "todo"]
+
+        self.assertEqual(len(done_tasks), 1)
+        self.assertEqual(len(todo_tasks), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
