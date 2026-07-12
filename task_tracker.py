@@ -2,6 +2,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 # Define the absolute target layout for our database storage file
 STORAGE_FILE = Path("./tasks.json")
@@ -107,7 +108,7 @@ def update_task_status(task_id: int, new_status: str):
     print(f"Error: Task with ID {task_id} not found.")
 
 
-def list_tasks(status_filter: str = None):
+def list_tasks(status_filter: Optional[str] = None):
     """Displays saved tasks in the terminal. If a status_filter is provided, displays only matching tasks."""
     tasks = load_tasks()
 
@@ -192,7 +193,7 @@ def main():
             task_id = int(sys.argv[2])
             update_task_status(task_id, "done")
         except ValueError:
-            print("Error: Task ID must be an integer..")
+            print("Error: Task ID must be an integer.")
 
     elif command == "list":
         # Check if an optional sub-argument was passed
