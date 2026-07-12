@@ -185,7 +185,7 @@ def main():
         except ValueError:
             print("Error: Task ID must be an integer.")
 
-    elif command == "mark-donw":
+    elif command == "mark-done":
         if len(sys.argv) < 3:
             print(
                 "Error: Missing task ID. Usage: python task_tracker.py mark-done [id]"
