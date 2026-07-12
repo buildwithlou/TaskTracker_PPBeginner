@@ -1,4 +1,4 @@
-# Task Tracker CLI
+# Task Tracker CLI by Lourdes Pampa
 
 A lightweight, automated Command Line Interface (CLI) tool designed to track and manage tasks directly from the terminal. This project demonstrates systems-level programming practices, structured file system state manipulation using Python's native libraries, and strict input validation.
 
