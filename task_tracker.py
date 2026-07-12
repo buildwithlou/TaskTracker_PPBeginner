@@ -124,9 +124,6 @@ def list_tasks(status_filter: str = None):
     if not filtered_tasks:
         print(f"No tasks found with status: '{status_filter}'")
         return
-    if not filtered_tasks:
-        print(f"No tasks found with status: '{status_filter}'")
-        return
 
     print(f"\n {'ID': <5} | {'Description': <40} | {'Status': <15}")
     print("-" * 66)
@@ -138,7 +135,7 @@ def list_tasks(status_filter: str = None):
 def main():
     if len(sys.argv) < 2:
         print("Usage: python task_tracker.py [command] [arguments]")
-        print("Commands: add, upadte, delete, mark-in-progress, mark-done, list")
+        print("Commands: add, update, delete, mark-in-progress, mark-done, list")
         return
 
     command = sys.argv[1].lower()
