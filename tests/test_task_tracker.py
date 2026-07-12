@@ -13,6 +13,7 @@ task_tracker.STORAGE_FILE = TEST_STORAGE
 
 
 class TestTaskTracker(unittest.TestCase):
+
     def setUp(self):
         """Runs before every single test to ensure a clean state."""
         if TEST_STORAGE.exists():

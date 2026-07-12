@@ -9,9 +9,7 @@ STORAGE_FILE = Path("./tasks.json")
 
 
 def initialize_storage():
-    """Ensures the JSON databasee file exists in the execution directory.
-    If it is missing, initialize it safely with an empty array wrapper."""
-
+    """Ensures the JSON databasee file exists in the execution directory."""
     if not STORAGE_FILE.exists():
         with open(STORAGE_FILE, "w", encoding="utf-8") as file:
             json.dump([], file)
@@ -29,22 +27,20 @@ def load_tasks() -> list:
 
 
 def save_tasks(tasks: list):
-    """Serializes and writes the complete task list state back onto disk."""
+    """Serializes and writes the complete task list back to disk."""
     with open(STORAGE_FILE, "w", encoding="utf-8") as file:
         json.dump(tasks, file, indent=4)
 
 
 def add_task(description: str):
-    """Creates a new task and appends it to the storage pipeline."""
+    """Creates a new task and appends it to storage."""
     if not description.strip():
         print("Error: Task description cannot be empty.")
         return
 
     tasks = load_tasks()
-
     # Auto-increment dynamic ID strategy
     next_id = max([task["id"] for task in tasks], default=0) + 1
-
     current_time = datetime.now().isoformat()
 
     new_task = {
@@ -61,12 +57,12 @@ def add_task(description: str):
 
 
 def update_task(task_id: int, new_description: str):
-    """Finds a task by ID and updates its description and modification timestamp."""
+    """Finds a task by ID and updates its description."""
     if not new_description.strip():
         print("Error: New description cannot be empty.")
         return
-    tasks = load_tasks()
 
+    tasks = load_tasks()
     # Search for the targeted task
     for task in tasks:
         if task["id"] == task_id:
@@ -80,9 +76,8 @@ def update_task(task_id: int, new_description: str):
 
 
 def delete_task(task_id: int):
-    """Removes a task from the dataset entirely based on its ID."""
+    """Removes a task from storage by ID."""
     tasks = load_tasks()
-
     # Filter out the task with the matching ID
     updated_tasks = [task for task in tasks if task["id"] != task_id]
 
@@ -95,9 +90,8 @@ def delete_task(task_id: int):
 
 
 def update_task_status(task_id: int, new_status: str):
-    """Finds a task by ID and transitions its status state."""
+    """Finds a task by ID and updates its status."""
     tasks = load_tasks()
-
     for task in tasks:
         if task["id"] == task_id:
             task["status"] = new_status
@@ -109,7 +103,7 @@ def update_task_status(task_id: int, new_status: str):
 
 
 def list_tasks(status_filter: Optional[str] = None):
-    """Displays saved tasks in the terminal. If a status_filter is provided, displays only matching tasks."""
+    """Displays tasks. If a status_filter is provided, displays only matching tasks."""
     tasks = load_tasks()
 
     if not tasks:
@@ -117,10 +111,11 @@ def list_tasks(status_filter: Optional[str] = None):
         return
 
     # Apply the filter if the user provided one (todo, in-progress, done)
-    if status_filter:
-        filtered_tasks = [task for task in tasks if task["status"] == status_filter]
-    else:
-        filtered_tasks = tasks
+    filtered_tasks = (
+        [task for task in tasks if task["status"] == status_filter]
+        if status_filter
+        else tasks
+    )
 
     if not filtered_tasks:
         print(f"No tasks found with status: '{status_filter}'")
@@ -156,8 +151,7 @@ def main():
             )
             return
         try:
-            task_id = int(sys.argv[2])
-            update_task(task_id, sys.argv[3])
+            update_task(int(sys.argv[2]), sys.argv[3])
         except ValueError:
             print("Error: Task ID must be an integer.")
 
@@ -166,8 +160,7 @@ def main():
             print("Error: Missing task ID. Usage: python task_tracker.py delete [id]")
             return
         try:
-            task_id = int(sys.argv[2])
-            delete_task(task_id)
+            delete_task(int(sys.argv[2]))
         except ValueError:
             print("Error: Task ID must be an integer.")
 
@@ -178,8 +171,7 @@ def main():
             )
             return
         try:
-            task_id = int(sys.argv[2])
-            update_task_status(task_id, "in-progress")
+            update_task_status(int(sys.argv[2]), "in-progress")
         except ValueError:
             print("Error: Task ID must be an integer.")
 
@@ -190,8 +182,7 @@ def main():
             )
             return
         try:
-            task_id = int(sys.argv[2])
-            update_task_status(task_id, "done")
+            update_task_status(int(sys.argv[2]), "done")
         except ValueError:
             print("Error: Task ID must be an integer.")
 
