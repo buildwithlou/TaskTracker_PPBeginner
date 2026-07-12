@@ -2,6 +2,9 @@
 
 A lightweight, automated Command Line Interface (CLI) tool designed to track and manage tasks directly from the terminal. This project demonstrates systems-level programming practices, structured file system state manipulation using Python's native libraries, and strict input validation.
 
+Following the instructions of the Task Tracker Roadmap
+>>https://roadmap.sh/projects/task-tracker
+
 This tool is built specifically to practice core backend and DevOps automation patterns, focusing on robust data serialization and clean system execution.
 
 ## System Architecture & CLI Usage
